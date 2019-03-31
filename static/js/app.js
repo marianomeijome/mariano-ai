@@ -9,7 +9,7 @@ $(document).ready(function(){
     var $ww = window.innerWidth;
     
 //    $body.addClass('animated fadeIn');
-    $bio.addClass('animated fadeInUp');
+//    $bio.addClass('animated fadeInUp');
     
     
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
