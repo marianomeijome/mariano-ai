@@ -244,8 +244,7 @@ nav a:hover{
     text-align: center;
     color: white;
     padding: 20px;
-    position: absolute;
-/*    top: 28%;*/
+    margin-bottom: -150px;
     z-index: 0;
     height: 100%;
     }
