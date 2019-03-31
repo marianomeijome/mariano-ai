@@ -3,6 +3,7 @@ html, body {
     width: 100%;
     scroll-behiavor:smooth;
     font-family: Montserrat, sans-serif;
+    overflow-x: hidden;
 }
 
 .sp-loading {
@@ -244,7 +245,9 @@ nav a:hover{
     color: white;
     padding: 20px;
     position: absolute;
-    top: 28%;
+/*    top: 28%;*/
+    z-index: 0;
+    height: 100%;
     }
 
 #logo img{

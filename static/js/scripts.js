@@ -24,18 +24,23 @@ $(document).ready(function(){
     //get div for scene, named #turntable
     var container = document.getElementById('turntable');
     container.appendChild( renderer.domElement );
-
-    //controls
     var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    
     controls.enableDamping = true;
     controls.dampingFactor = .085;
     controls.enableZoom = false;
-    controls.rotateSpeed = .05;
     controls.enablePan = false;
-
+    controls.enableRotate = false;
+    
     //limit orbit Y controls
     controls.minPolarAngle = 1;
     controls.maxPolarAngle = 1;
+    
+    if(window.innerWidth > 1000){
+        controls.enableRotate = true;
+        controls.rotateSpeed = .05;
+    }
+    
 
     //lighting
     scene.add( new THREE.HemisphereLight( 0xffffff, 0x221113 ) );

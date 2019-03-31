@@ -12,18 +12,20 @@ $(document).ready(function(){
     $bio.addClass('animated fadeInUp');
     
     
-    
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $bio.css("z-index",20);
+    }
     //banner scroll event
 //    var $namePos = $('#name').offset().top;
-    $(window).scroll(function(){
-        if ($(this).scrollTop() >= 200){
-            $bio.addClass('fadeOutDown');
-            $bio.css("z-index",0);
-        }else {
-            $bio.removeClass('fadeOutDown');
-            $bio.css("z-index",2);
-        }
-    });
+//    $(window).scroll(function(){
+//        if ($(this).scrollTop() >= 200){
+//            $bio.addClass('fadeOutDown');
+//            $bio.css("z-index",0);
+//        }else {
+//            $bio.removeClass('fadeOutDown');
+//            $bio.css("z-index",2);
+//        }
+//    });
     
      //SMOOTH SCROLL HREF 
     $('a').click(function() {
