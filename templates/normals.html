@@ -1,0 +1,107 @@
+{% include "includes/header.html" %}
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<section id='banner' class='container-fluid'>
+    <div class="col"></div>
+    <div class="col-md-6 banner-info bg2">
+        <div class="block-heading">
+            <h2 class="text-info">Normal Map Generator</h2>
+            <div class='line'></div>
+            <p>Upload an image to generate a normal map. Built with keras, flask, and an AWS linux instance.</p>
+        </div>
+    </div>
+    <div class="col"></div>
+</section>
+
+<section id="main-content" class="container-fluid">
+    <div class="col-md-12">
+        <div class="user-image">
+            <img id="num" src="http://placehold.it/512x512" class="prediction">
+        </div>
+        <div class="row">
+            <form class="was-validated" method="post" enctype="multipart/form-data" name="form1" style="
+    margin: 0 auto">
+                <div class="input-group mb-3">
+                    <div class="buttons">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" name="file" required="">
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            <!--    <div class="invalid-feedback">No file selected</div>-->
+                        </div>
+                        <input class="btn btn-primary generate" type="button" onclick="uploadEx()" value="Generate Normals">
+                        <input name="data" id="data" type="hidden">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $('#validatedCustomFile').on('change', function() {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+
+        function uploadEx() {
+            var fd = new FormData(document.forms["form1"]);
+            var xhr = new XMLHttpRequest({
+                mozSystem: true
+            });
+            xhr.open('POST', 'predict-normals', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    document.getElementById('num').src = xhr.responseText;
+                }
+            }
+
+            xhr.onload = function() {
+
+            };
+            xhr.send(fd);
+        };
+
+    </script>
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-lg-6 col-sm-8 description">
+            <h5>Framework: <small>Keras, TensorFlow backend</small></h5>
+            <h5>Dataset: <small>Pixar 128, 130</small></h5>
+            <h5>Model Size: <small>2.4MB</small></h5>
+            <h5>Model Arch: <small>Convolutional Autoencoder</small></h5>
+            <h5>Training Time: <small>20 minutes</small></h5>
+            <hr>
+
+            <p>Normal maps are used in 3D production to add surface detail to geometry without the additional polygons. They are cheap and effective in adding realism to a material without sacrificing filesize and performance, especially in real-time engines.</p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-12 feature-box"><i class="icon-star icon"></i>
+                    <h4>Next Steps</h4>
+                    <p>I plan to use this same model architecture to also generate roughness, ambient occlusion, and height maps.</p>
+                </div>
+                <div class="col-md-12 feature-box"><i class="icon-pencil icon"></i>
+                    <h4>Use Cases</h4>
+                    <p>Often times in 3D production we may find a diffuse map that goes well on a material, while missing the corresponding normal map. </p>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</section>
+
+<section class="clean-block features">
+    <div class="container">
+        <div class="card bg1 text-center">
+            <div class="card-body">
+                <h5 class="card-title">Interactive Digit Identifier</h5>
+                <p class="card-text">Draw a number on an HTML5 Canvas to return the predicted number drawn.
+                </p>
+                <a href="/digits" class="btn btn-primary">See Demo</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% include "includes/footer.html" %}
