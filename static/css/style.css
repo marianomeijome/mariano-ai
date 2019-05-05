@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     width: 100%;
-    scroll-behiavor:smooth;
+/*    scroll-behiavor:smooth;*/
     font-family: Montserrat, sans-serif;
     overflow-x: hidden;
 }
